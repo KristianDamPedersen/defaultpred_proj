@@ -32,3 +32,7 @@ https://stackoverflow.com/questions/54509060/limiting-the-number-of-decimal-plac
 
 4. Why i chose to recode high income_balance_ratios
 https://www.tiaa.org/public/learn/personal-finance-101/how-much-of-my-income-should-i-save-every-month
+
+5. A larger than i would admit amount of time was spent creating the distribution over income_balance_ratio between defaulted and non-defaulted individuals. The solution ended up being the "stat" argument from seaborns documentation. Can be found at:
+https://seaborn.pydata.org/tutorial/distributions.html
+
