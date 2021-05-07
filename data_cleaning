@@ -1,0 +1,21 @@
+# Data cleaning and pipeline creation for default loan predictors
+## importing
+import pandas as pd
+import numpy as np
+## Reading in the dataset
+data = pd.read_csv('/users/kristiandampedersen/documents/data_science_projects/defaultpred_proj/data/loan_data.csv')
+# Creating income_balance_ratio
+data_ph = data['Bank Balance']/data['Annual Salary']*100
+data_ph2 = data_ph.round(decimals=2)
+data['income_balance_ratio'] = data_ph2
+data.head()
+# Seperating predictors and labels
+ldp_label = data['Defaulted?'].copy()
+ldp_data = data.drop('Defaulted?', axis=1)
+ldp_data.head()
+# Scale the variables
+ldp_data.describe()
+    # Due to all the variables scaling differently, we will try to scale
+
+########### YOU HAVE TO SPLIT THE SETS AS YOU CANT FIT TO THE ENTIRE SET WITH DIFFERENT TRANSFOMRATIONS! #######
+# Output csv.
