@@ -16,7 +16,7 @@ train_set.head()
 train_set = train_set.drop('Index', axis=1)
 # Seperating predictors and labels
 loan_labels = train_set['Defaulted?'].copy()
-loan_predictors = train_set.drop('Defaulted?', axis=1).sort_values(by='Defaulted?')
+loan_predictors = train_set.drop('Defaulted?', axis=1)
 loan_labels.iloc[50:100]
 
 # Normalizing predictor variables the variables (a requirement for logistic regression)
@@ -35,4 +35,4 @@ training_data = scaled_predictors.join(loan_labels)
 training_data = final_data.fillna(1)
 training_data.head(50)
 # Output csv.
-training_data.to_csv("training_data")
+training_data.to_csv("training_data.csv")
