@@ -3,19 +3,36 @@
 import pandas as pd
 import numpy as np
 ## Reading in the dataset
-data = pd.read_csv('/users/kristiandampedersen/documents/data_science_projects/defaultpred_proj/data/loan_data.csv')
+ldp_data = pd.read_csv('/users/kristiandampedersen/documents/data_science_projects/defaultpred_proj/data/loan_data.csv')
+# Splitting SET
+from sklearn.model_selection import train_test_split
+train_set, test_set = train_test_split(ldp_data, test_size=0.2, random_state=42)
 # Creating income_balance_ratio
-data_ph = data['Bank Balance']/data['Annual Salary']*100
-data_ph2 = data_ph.round(decimals=2)
-data['income_balance_ratio'] = data_ph2
-data.head()
+train_ph = train_set['Bank Balance']/train_set['Annual Salary']*100
+train_ph2 = train_ph.round(decimals=2)
+train_set['income_balance_ratio'] = train_ph2
+train_set.head()
+# We need to drop the index column
+train_set = train_set.drop('Index', axis=1)
 # Seperating predictors and labels
-ldp_label = data['Defaulted?'].copy()
-ldp_data = data.drop('Defaulted?', axis=1)
-ldp_data.head()
-# Scale the variables
-ldp_data.describe()
-    # Due to all the variables scaling differently, we will try to scale
+loan_labels = train_set['Defaulted?'].copy()
+loan_predictors = train_set.drop('Defaulted?', axis=1).sort_values(by='Defaulted?')
+loan_labels.iloc[50:100]
 
-########### YOU HAVE TO SPLIT THE SETS AS YOU CANT FIT TO THE ENTIRE SET WITH DIFFERENT TRANSFOMRATIONS! #######
+# Normalizing predictor variables the variables (a requirement for logistic regression)
+loan_predictors = loan_predictors.drop('Employed', axis=1)
+loan_predictors.head()
+    # We can now normalize the values
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+names = loan_predictors.columns
+d = scaler.fit_transform(loan_predictors)
+scaled_predictors = pd.DataFrame(d, columns=names)
+scaled_predictors.head()
+
+# Combining the dataset
+training_data = scaled_predictors.join(loan_labels)
+training_data = final_data.fillna(1)
+training_data.head(50)
 # Output csv.
+training_data.to_csv("training_data")

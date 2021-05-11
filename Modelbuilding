@@ -5,4 +5,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Reading in the data
-ldf_data = pd.read_csv('/users/kristiandampedersen/documents/data_science_projects/defaultpred_proj/data/loan_data.csv')
+training_data = pd.read_csv('/users/kristiandampedersen/documents/data_science_projects/defaultpred_proj/data/training_data.csv')
+training_data.head()
+training_data = training_data.drop('Unnamed: 0', axis=1)
+training_data.head()
+
+# Training logistic regression

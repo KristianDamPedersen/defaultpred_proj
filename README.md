@@ -24,7 +24,7 @@ Whilst there wasn't a whole lot of data cleaning, i'll list the data modificatio
 Higher bank balance and a higher percentage of annual salary saved both counterintuitively leads to higher rates of defaulting, this is likely due to mislabeling (see below). Employmeant seems to play a role in preventing defaulting, and annual salary does not have a statistically significant impact on defaulting. The EDA leads me to test both with and without including Annual Salary in the modelbuilding process.
 
 #### About the data itself
-The data consists of 10000 individuals with a few financial indicators on each. We get the following information: Employment, bank balance, annual salary, whether and wether or not a person has defaulted. From bank balance and annual income i created the income_ratio_balance variable as discussed above. About 3.34% of all individuals ended up defaulting on their loans. The average annual salary was 402204, and the average bank balance was 10025. 
+The data consists of 10000 individuals with a few financial indicators on each. We get the following information: Employment, bank balance, annual salary, whether and wether or not a person has defaulted. From bank balance and annual income i created the income_ratio_balance variable as discussed above. About 3.34% of all individuals ended up defaulting on their loans. The average annual salary was 402204, and the average bank balance was 10025.
 
 #### The counter-intuitive relationship between bank balance and defaulting
 Going into this EDA i definetly expected that individuals with a high balance in their bank-accounts, were less likely to default on their loans. However, this assumption was quickly disproven however.
@@ -45,14 +45,14 @@ In short, annual salary doesn't seem to be nearly as important as i would've exp
 
 #### A little bit about employment
 Employment in short: Unemployed people are responsible for 36.13% of all defaults, despite making up only 17.43% of the dataset. However that being said, its still only 4.45% of unemployed people who default compared to 3.18 of employed individuals.
-### Modelbuilding 
+### Modelbuilding
 ### Productionization
 
 ## Problems and fixes
 1. Trouble fitting multiple seaborn plots into matplotlib subplots, solution found at:
 https://dev.to/thalesbruno/subplotting-with-matplotlib-and-seaborn-5ei8
 
-2. Trouble creating a new variable column, that creates a ratio between income and bank balance. Solution found at: 
+2. Trouble creating a new variable column, that creates a ratio between income and bank balance. Solution found at:
 https://stackoverflow.com/questions/38032817/dividing-one-dataframe-column-by-another-division-by-zero/46942969
 
 3. Ran into problems limiting decimal places when creating income_balance_ratio predictor. Solution found at:
@@ -64,3 +64,5 @@ https://www.tiaa.org/public/learn/personal-finance-101/how-much-of-my-income-sho
 5. A larger than i would admit amount of time was spent creating the distribution over income_balance_ratio between defaulted and non-defaulted individuals. The solution ended up being the "stat" argument from seaborns documentation. Can be found at:
 https://seaborn.pydata.org/tutorial/distributions.html
 
+6. Great guide on how to normalize values with the MinMaxScaler:
+https://www.journaldev.com/45109/normalize-data-in-python
